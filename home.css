@@ -110,6 +110,29 @@ nav .fa-bars {
   .nav-iteam {
     display: none;
   }
+  
+  .nav-iteam.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    width: 100%; 
+    background: #fff; 
+    padding: 1rem; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    z-index: 1000; 
+  }
+ 
+  .nav-iteam.active ul {
+    flex-direction: column; 
+    gap: 15px; 
+    width: 100%; 
+  }
+  
+  .nav-iteam.active .fa-phone {
+    margin-top: 10px; 
+  }
 }
 
 /* Reset and Base Styles */
@@ -142,6 +165,9 @@ body {
   animation: appear linear;
   animation-timeline: view();
   animation-range: entry 0% cover 40%;
+}
+.test{
+  
 }
 
 /* HERO SECTION */

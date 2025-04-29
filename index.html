@@ -20,16 +20,16 @@
          
         </div>
         <nav class="nav">
-          <i class="fa-solid fa-bars"></i>
+          <i class="fa-solid fa-bars" id="menuToggle"></i>
           <div class="nav-iteam">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <i class="fa-solid fa-phone"> <span>+971 04-3511117</span></i>
-        </div>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#team">Team</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+            <i class="fa-solid fa-phone"> <span>+971 04-3511117</span></i>
+          </div>
         </nav>
         
       </div>
@@ -90,21 +90,18 @@
     </div>
 
   </section>
-  <section class="contact-section" id="contact">
+
+ <section class="contact-section" id="contact">
     <div class="container">
       <h2 class="contact-title">Contact Us</h2>
-
       <div class="contact-content">
-        <!-- Contact Form -->
-        <form class="contact-form">
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <input type="text" placeholder="Phone Number" />
-          <textarea placeholder="Your Message" rows="5" required></textarea>
+        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+          <input type="text" placeholder="Your Name" name="name" required />
+          <input type="email" placeholder="Your Email" name="email" required />
+          <input type="tel" placeholder="Phone Number" name="phone" />
+          <textarea placeholder="Your Message" name="message" rows="5" required></textarea>
           <button type="submit">Send Message</button>
         </form>
-
-        <!-- Contact Information -->
         <div class="contact-info">
           <div class="info-item">
             <h3><i class="fa-solid fa-location-dot"></i> Address</h3>
@@ -114,7 +111,7 @@
           </div>
           <div class="info-item">
             <h3><i class="fa-regular fa-envelope"></i> Email</h3>
-            <p><a href="mailto:info@example.com">info@example.com</a></p>
+            <p><a href="mailto:info@example.com">sadioprojectmanagement@gmail.com</a></p>
           </div>
           <div class="info-item">
             <h3><i class="fa-solid fa-phone"></i> Phone</h3>
@@ -124,6 +121,9 @@
       </div>
     </div>
   </section>
+
+
+
 
   <section class="map-section">
     <div class="container">
@@ -195,6 +195,59 @@
       </nav>
     </div>
   </footer>
+
+   <script>
+
+ document.getElementById('menuToggle').addEventListener('click', () => {
+    const navItems = document.querySelector('.nav-iteam');
+    navItems.classList.toggle('active');
+  });
+
+  document.querySelectorAll('.nav-iteam a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.nav-iteam').classList.remove('active');
+    });
+  });
+
+
+
+    function handleSubmit(event) {
+      event.preventDefault(); 
+
+     
+      const form = document.getElementById('contactForm');
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        message: formData.get('message'),
+      };
+
+     
+      const emailBody = `
+        Name: ${data.name}
+        Email: ${data.email}
+        Message: ${data.message}
+      `.trim();
+
+     
+      const subject = encodeURIComponent(`Contact Form Submission - Phone: ${data.phone}`);
+      const body = encodeURIComponent(emailBody);
+
+      
+      const companyEmail = 'sadioprojectmanagement@gmail.com'; 
+
+     
+      const mailtoLink = `mailto:${companyEmail}?subject=${subject}&body=${body}`;
+
+     
+      window.location.href = mailtoLink;
+
+     
+      form.reset();
+    }
+  </script>
 </div>
 </body>
 </html>
